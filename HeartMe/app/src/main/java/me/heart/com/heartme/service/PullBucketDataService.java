@@ -14,6 +14,8 @@ import me.heart.com.heartme.network.NetworkHTTPRequests;
 
 public class PullBucketDataService extends IntentService{
 
+
+    public static final String GET_BLOOD_TEST_CONFIG_DATA = "GET_DATA";
     private static NetworkHTTPRequests networkHTTPRequests;
     private static JsonParser jSONparser;
     private DatabaseHelper helper;
@@ -44,6 +46,11 @@ public class PullBucketDataService extends IntentService{
                 String getMaterialsResponce = networkHTTPRequests.getBloodTestConfig();
                 ArrayList<BloodTestConfigDataModel> bloodTestConfigDataModel = jSONparser.getBloodTestConfigDataModelFromJson(getMaterialsResponce);
                 helper.bulkInsertDataToBloodTestConfigDataTable(bloodTestConfigDataModel);
+
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.setAction(GET_BLOOD_TEST_CONFIG_DATA);
+                broadcastIntent.putExtra(PullBucketDataServiceApiKeys.DATA_TYPE_KEY, PullBucketDataServiceApiKeys.DATA_TYPE_PULL_BUCKET_DATA);
+                sendBroadcast(broadcastIntent);
             }
         }catch (Exception e){
             e.printStackTrace();
