@@ -6,24 +6,31 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 import me.heart.com.heartme.dbhelper.DatabaseHelper;
 import me.heart.com.heartme.reciver.BroadCastReciver;
 import me.heart.com.heartme.service.PullBucketDataService;
 import me.heart.com.heartme.service.PullBucketDataServiceApiKeys;
+import me.heart.com.interfaces.ProgressBarInterface;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ProgressBarInterface{
 
     public static DatabaseHelper helper = null;
     private BroadCastReciver receiver = null;
+    private ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressBar = (ProgressBar) findViewById(R.id.spinner);
+        progressBar.setVisibility(View.VISIBLE);
 
         Window window = getWindow();
 
@@ -60,4 +67,9 @@ public class MainActivity extends AppCompatActivity {
         unregisterReceiver(receiver);
         super.onStop();
     }
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
+
 }
