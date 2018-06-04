@@ -67,36 +67,38 @@ public class MainFragment extends Fragment {
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try {
+                    hideSoftKeyboard();
 
-                hideSoftKeyboard();
+                    if (inputTestName.getText().toString().contains("hdl") || inputTestName.getText().toString().contains("hd")) {
+                        int treshold = findTrashold(getResources().getString(R.string.test_result_hdl_colesterol));
+                        if (Integer.parseInt(inputTestResut.getText().toString()) >= treshold) {
+                            setResults(getResources().getString(R.string.test_result_bad), getResources().getString(R.string.test_result_hdl_colesterol));
+                        } else {
+                            setResults(getResources().getString(R.string.test_result_good), getResources().getString(R.string.test_result_hdl_colesterol));
+                        }
+                    } else if (inputTestName.getText().toString().contains("ldl") || inputTestName.getText().toString().contains("ld")) {
+                        int treshold = findTrashold(getResources().getString(R.string.test_result_ldl_colesterol));
+                        if (Integer.parseInt(inputTestResut.getText().toString()) >= treshold) {
+                            setResults(getResources().getString(R.string.test_result_bad), getResources().getString(R.string.test_result_ldl_colesterol));
+                        } else {
+                            setResults(getResources().getString(R.string.test_result_good), getResources().getString(R.string.test_result_ldl_colesterol));
+                        }
+                    } else if (inputTestName.getText().toString().contains("a1c") || inputTestName.getText().toString().contains("a1") || inputTestName.getText().toString().contains("1c")) {
+                        int treshold = findTrashold(getResources().getString(R.string.test_result_aic));
+                        if (Integer.parseInt(inputTestResut.getText().toString()) >= treshold) {
+                            setResults(getResources().getString(R.string.test_result_bad), getResources().getString(R.string.test_result_aic));
+                        } else {
+                            setResults(getResources().getString(R.string.test_result_good), getResources().getString(R.string.test_result_aic));
+                        }
+                    } else {
+                        setResults(getResources().getString(R.string.test_result_unknown), null);
+                    }
 
-                if(inputTestName.getText().toString().contains("hdl") || inputTestName.getText().toString().contains("hd")){
-                    int treshold = findTrashold(getResources().getString(R.string.test_result_hdl_colesterol));
-                    if(Integer.parseInt(inputTestResut.getText().toString()) >= treshold){
-                        setResults(getResources().getString(R.string.test_result_bad),getResources().getString(R.string.test_result_hdl_colesterol));
-                    }else{
-                        setResults(getResources().getString(R.string.test_result_good),getResources().getString(R.string.test_result_hdl_colesterol));
-                    }
-                }else if (inputTestName.getText().toString().contains("ldl") || inputTestName.getText().toString().contains("ld")){
-                    int treshold = findTrashold(getResources().getString(R.string.test_result_ldl_colesterol));
-                    if(Integer.parseInt(inputTestResut.getText().toString()) >= treshold){
-                        setResults(getResources().getString(R.string.test_result_bad),getResources().getString(R.string.test_result_ldl_colesterol));
-                    }else{
-                        setResults(getResources().getString(R.string.test_result_good),getResources().getString(R.string.test_result_ldl_colesterol));
-                    }
-                }else if (inputTestName.getText().toString().contains("a1c") || inputTestName.getText().toString().contains("a1") || inputTestName.getText().toString().contains("1c")){
-                    int treshold = findTrashold(getResources().getString(R.string.test_result_aic));
-                    if(Integer.parseInt(inputTestResut.getText().toString()) >= treshold){
-                        setResults(getResources().getString(R.string.test_result_bad),getResources().getString(R.string.test_result_aic));
-                    }else{
-                        setResults(getResources().getString(R.string.test_result_good),getResources().getString(R.string.test_result_aic));
-                    }
-                }else {
-                    setResults(getResources().getString(R.string.test_result_unknown),null);
+
+                }catch (Exception e){
+
                 }
-
-
-
             }
         });
 
@@ -161,6 +163,7 @@ public class MainFragment extends Fragment {
                 textResponce.setVisibility(View.GONE);
                 imageResponce.setVisibility(View.GONE);
                 textResponceExplanation.setText(getResources().getString(R.string.test_result_unknown));
+                textResponceExplanation.setVisibility(View.VISIBLE);
                 break;
         }
     }
