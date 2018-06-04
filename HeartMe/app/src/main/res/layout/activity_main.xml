@@ -7,11 +7,22 @@
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/hello_heart_logo"/>
+
+
     <ProgressBar
         android:id="@+id/spinner"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="36dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/logo"
         android:indeterminateDrawable="@drawable/progress_bar"
         android:visibility="gone"/>
 

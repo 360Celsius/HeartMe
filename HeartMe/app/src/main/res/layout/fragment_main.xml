@@ -1,12 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/pure_white">
 
-    <TextView
+    <ImageView
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:text="FRAGMENT MAIN"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/hello_heart_logo" />
+
+
+    <TextView
+        android:id="@+id/text_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Am I OK ?"
+        android:textSize="22dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_test_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_logo"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginTop="60dp">
+
+        <EditText
+            android:id="@+id/input_test_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/test_name" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_test_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_layout_test_name"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginTop="30dp">
+
+        <EditText
+            android:id="@+id/input_test_resut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/test_result" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:id="@+id/go_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_layout_test_result"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corner_button"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GO"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:textColor="@color/pure_white"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_responce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/go_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="Blood Test Category"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/image_responce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_responce"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:src="@drawable/ic_sentiment_very_satisfied" />
 
 </RelativeLayout>
