@@ -2,6 +2,7 @@ package me.heart.com.heartme.dbhelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -81,5 +82,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             db.endTransaction();
         }
+    }
+
+    public ArrayList<BloodTestConfigDataModel> getBloodTestConfig(){
+
+        ArrayList<BloodTestConfigDataModel> bloodTestConfigDataModelArray = new ArrayList<>();
+
+        String queryGetCurrentWEATHER = "SELECT  * FROM " + DatabaseHelperContract.BloodTestConfigDataTable.TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(queryGetCurrentWEATHER, null);
+
+
+        try {
+
+            if (cursor.moveToFirst()) {
+                do {
+
+                    BloodTestConfigDataModel bloodTestConfigDataModel = new BloodTestConfigDataModel();
+                    bloodTestConfigDataModel.setName(cursor.getString(cursor.getColumnIndex(DatabaseHelperContract.BloodTestConfigDataTable.COLUMN_NAME_NAME)));
+                    bloodTestConfigDataModel.setThreshold(cursor.getString (cursor.getColumnIndex(DatabaseHelperContract.BloodTestConfigDataTable.COLUMN_NAME_THRESHOLD)));
+
+                    bloodTestConfigDataModelArray.add(bloodTestConfigDataModel);
+
+                } while (cursor.moveToNext());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+
+        return bloodTestConfigDataModelArray;
     }
 }

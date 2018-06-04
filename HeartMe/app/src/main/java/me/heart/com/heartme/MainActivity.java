@@ -15,9 +15,10 @@ import me.heart.com.heartme.dbhelper.DatabaseHelper;
 import me.heart.com.heartme.reciver.BroadCastReciver;
 import me.heart.com.heartme.service.PullBucketDataService;
 import me.heart.com.heartme.service.PullBucketDataServiceApiKeys;
+import me.heart.com.interfaces.DBHelperListenerInterface;
 import me.heart.com.interfaces.ProgressBarInterface;
 
-public class MainActivity extends AppCompatActivity implements ProgressBarInterface{
+public class MainActivity extends AppCompatActivity implements DBHelperListenerInterface,ProgressBarInterface{
 
     public static DatabaseHelper helper = null;
     private BroadCastReciver receiver = null;
@@ -68,8 +69,14 @@ public class MainActivity extends AppCompatActivity implements ProgressBarInterf
         super.onStop();
     }
 
+    @Override
     public ProgressBar getProgressBar() {
         return progressBar;
+    }
+
+    @Override
+    public DatabaseHelper getDBhelper() {
+        return helper;
     }
 
 }

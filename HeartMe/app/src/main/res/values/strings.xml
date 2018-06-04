@@ -3,4 +3,12 @@
 
     <string name="test_name">Test Name</string>
     <string name="test_result">Test Result</string>
+
+    <string name="test_result_hdl_colesterol">HDL Cholesterol</string>
+    <string name="test_result_ldl_colesterol">LDL Cholesterol</string>
+    <string name="test_result_aic">A1C</string>
+
+    <string name="test_result_unknown">Unknown</string>
+    <string name="test_result_good">Good</string>
+    <string name="test_result_bad">Bad</string>
 </resources>
